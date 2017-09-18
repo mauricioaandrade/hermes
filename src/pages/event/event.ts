@@ -18,8 +18,8 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 export class EventPage {
   items: FirebaseListObservable<any[]>;
 
-  push() {
-    this.navCtrl.push(EventDetailPage);
+  push(key) {
+    this.navCtrl.push(EventDetailPage, {eventId: key});
   }
 
   constructor(

@@ -16,10 +16,10 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 })
 export class EventDetailPage {
 
-  eventId = '01'
+  eventId = this.navParams.get('eventId'); 
 
   item: FirebaseObjectObservable<any>;
-  constructor(db: AngularFireDatabase) {
+  constructor(db: AngularFireDatabase, private navParams: NavParams) {
     this.item = db.object('/events/' + this.eventId);
   }
 
