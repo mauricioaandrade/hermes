@@ -18,7 +18,6 @@
 
 <ion-content padding>
   <ion-item *ngFor="let item of items | async">
-    <a href="#">{{item.$value}}</a>
-    <!-- {{item.$value}} -->
+    <a href="{{item.$key}}">{{item.$key}}</a>
   </ion-item>
 </ion-content>

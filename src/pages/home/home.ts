@@ -9,6 +9,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class HomePage {
   items: FirebaseListObservable<any[]>;
+
   constructor(
     public db: AngularFireDatabase,
     public navCtrl: NavController,

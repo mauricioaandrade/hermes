@@ -1,0 +1,21 @@
+<!--
+  Generated template for the EventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>EventPage</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item *ngFor="let item of items | async">
+    <!-- <a href="/events/{{item.$key}}">{{item.$key}}</a> -->
+    <button ion-button block (click)="push()">{{item.$key}}</button>
+  </ion-item>
+</ion-content>

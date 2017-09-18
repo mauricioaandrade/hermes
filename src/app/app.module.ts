@@ -1,3 +1,5 @@
+import { EventDetailPage } from './../pages/event-detail/event-detail';
+import { EventPage } from './../pages/event/event';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -21,7 +23,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    EventPage, 
+    EventDetailPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    EventPage,
+    EventDetailPage
   ],
   providers: [
     StatusBar,
