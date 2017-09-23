@@ -9,6 +9,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from '../environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     HomePage,
     TabsPage,
     EventPage, 
-    EventDetailPage
+    EventDetailPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -41,11 +44,13 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     HomePage,
     TabsPage,
     EventPage,
-    EventDetailPage
+    EventDetailPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,0 +1,41 @@
+<ion-content padding>
+  <img src="../../assets/images/logo.png" alt="" style="margin: auto;display: block;">
+  
+  <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="todo.title" name="title" placeholder="e-mail"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" [(ngModel)]="todo.description" name="description" placeholder="Password"></ion-input>
+    </ion-item>
+    <button ion-button clear block style="color: #00008B;">
+      Esqueci a senha
+    </button>
+    
+    <button ion-button type="submit" block style="background-color: #00008B; width: 90%; margin: auto;">
+      ENTRAR
+    </button>
+    
+    <p text-center style="margin: 15px 15px">ou</p>
+    
+    <button ion-button icon-left style="background-color: #3b5998; width: 90%; margin: auto;" block>
+      <ion-icon name="logo-facebook"></ion-icon>
+      Logar com Facebook
+    </button>
+    
+    <button ion-button icon-left style="background-color: #df4b37; width: 90%; margin: auto; margin-top: 10px" block margin-top>
+      <ion-icon name="logo-googleplus"></ion-icon>
+      Logar com Google
+    </button>
+    
+    <button ion-button clear block style="color: #00008B;">
+      Cadastre-se
+    </button>
+    
+    <div style="position: absolute; bottom: 0px; width: 100%; text-align: right;">        
+        <p style="color: #3b5998; margin-right: 20px;">Powered by <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT</p>        
+    </div>
+    
+    
+  </form>
+</ion-content>
