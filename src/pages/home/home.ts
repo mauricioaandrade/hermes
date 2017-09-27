@@ -33,7 +33,7 @@ export class HomePage {
 
   loadMap() {
 
-    let latLng = new google.maps.LatLng('-12.9996906', '-38.5125946');
+    let latLng = new google.maps.LatLng('-12.9996200', '-38.5125946');
     let mapOptions = {
       center: latLng,
       zoom: 15,
