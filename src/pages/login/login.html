@@ -3,10 +3,10 @@
 
   <form (ngSubmit)="logForm()">
     <ion-item>
-      <ion-input type="text" [(ngModel)]="todo.email" name="title" placeholder="e-mail"></ion-input>
+      <ion-input type="text" [(ngModel)]="loginData.email" name="title" placeholder="e-mail"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" [(ngModel)]="todo.password" name="description" placeholder="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="loginData.password" name="description" placeholder="password"></ion-input>
     </ion-item>
     <button ion-button clear block style="color: #00008B;">
       Esqueci a senha

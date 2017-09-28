@@ -10,9 +10,13 @@ import { NavController } from 'ionic-angular';
 })
 export class LoginPage {
   // items: FirebaseListObservable<any[]>;
-  todo = {}
+  loginData = {
+    email: '',
+    password: ''
+  }
+
   logForm() {
-    this.afAuth.auth.signInWithEmailAndPassword(this.todo.email, this.todo.password)
+    this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
       .then(authObj => sessionStorage.setItem('token', authObj.refreshToken))
       .catch(error  => console.error(error));
   }
@@ -22,7 +26,6 @@ export class LoginPage {
       .then(() => sessionStorage.removeItem('token'))
       .catch(error => console.error(error));
   }
-
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) {
     this.afAuth.auth.onAuthStateChanged(user => console.log(user));
