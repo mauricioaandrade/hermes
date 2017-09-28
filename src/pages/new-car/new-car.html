@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>NewCar</ion-title>
+    <ion-title> <ion-icon name="car"></ion-icon> Novo Carro </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,7 +18,7 @@
   <form (ngSubmit)="logForm()">
     <ion-item>
       <ion-label>Todo</ion-label>
-      <ion-input type="text" [(ngModel)]="car.manufacturer" name="title"></ion-input>
+      <ion-input type="text" [(ngModel)]="car.manufacturer" name="title"></ion-input>      
     </ion-item>
     <ion-item>
       <ion-label>Select Car Manufacturer</ion-label>

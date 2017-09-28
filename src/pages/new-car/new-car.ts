@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 /**
  * Generated class for the NewCarPage page.
@@ -14,7 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'new-car.html',
 })
 export class NewCarPage {
-
+  lista: FirebaseListObservable<any[]>;
   car = {
     manufacturer: '',
     model: '',
@@ -23,10 +24,12 @@ export class NewCarPage {
   }
 
   logForm(data) {
-    console.log(this.car);
+    this.lista.push(this.car).then(() => {
+    });
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
+    this.lista = db.list('/cars')
   }
 
   ionViewDidLoad() {
