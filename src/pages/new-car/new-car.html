@@ -21,22 +21,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <form [formGroup]="carForm" (ngSubmit)="logForm()">
-
-        <!-- @TODO colocar busca inteligente, se necessário
-        <ion-item>
-          <ion-label>Nome do veículo</ion-label>
-          <ion-input type="text" name="title" (keydown)="search($event)"></ion-input>      
-        </ion-item>
-        
-        <div *ngFor="let carItem of carsList">
-            <h4> {{carItem.marca}} {{carItem.modelo}} </h4>
-        </div>
-              
-        <div *ngIf="carsList?.lenght < 1">
-            <h4 Nenhum carro encontrado></h4>
-        </div>
-      -->
+      <form [formGroup]="carForm" (ngSubmit)="addNewUserCar()">
 
         <ion-item>
           <ion-label>Marca do Veículo</ion-label>

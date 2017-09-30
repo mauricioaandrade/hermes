@@ -1,8 +1,8 @@
-import { Component, /*OnInit*/ } from '@angular/core';
+import { Component} from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-// import { CarsProvider } from '../../providers/cars/cars';
+import { CarsProvider } from '../../providers/cars/cars';
 import { Subject } from 'rxjs/Subject'
 
 /**
@@ -17,7 +17,7 @@ import { Subject } from 'rxjs/Subject'
   selector: 'page-new-car',
   templateUrl: 'new-car.html',
 })
-export class NewCarPage /*@TODO colocar uma busca textual no futuro implements OnInit*/ {
+export class NewCarPage {
   lista: FirebaseListObservable<any[]>;
   carsList;
   carBrands;
@@ -34,7 +34,7 @@ export class NewCarPage /*@TODO colocar uma busca textual no futuro implements O
     smart_code: ''
   }
 
-  logForm(data) {
+  addNewUserCar(data) {
     if (!this.carForm.valid) {
       const alert = this.alertCtrl.create({
         title: 'Erro',
@@ -67,13 +67,13 @@ export class NewCarPage /*@TODO colocar uma busca textual no futuro implements O
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public db: AngularFireDatabase, 
-    // private carsProvider: CarsProvider, @TODO colocar uma busca textual no futuro
+    private carsProvider: CarsProvider,
     public alertCtrl: AlertController,
     public formBuilder: FormBuilder) {
     
-      this.lista = db.list('/cars')
-      this.carBrands = this.db.list('/car-brands')
-    
+      this.lista = this.carsProvider.getUserCars(1);
+      this.carBrands = this.carsProvider.getCarBrands();
+
       this.yearsList = [];
       for (let i = (new Date().getFullYear() + 1); i >= 2000 ; i--) {
         this.yearsList.push(i)
@@ -86,33 +86,11 @@ export class NewCarPage /*@TODO colocar uma busca textual no futuro implements O
         plate: ['value', Validators.compose([Validators.required])],
         smart_code: ['value', Validators.compose([Validators.required])]
       });
-      console.log(this.yearsList)
   }
-
-  //@TODO colocar uma busca textual no futuro
-  // ngOnInit() {
-  //   this.carsProvider
-  //     .getCars(this.startAt, this.endAt)
-  //     .subscribe(carsList => this.carsList = carsList) 
-  // }
-  //
-  // search($event) {
-  //   if ($event.timeStamp - this.lastKeypress > 200) {
-  //     let q = $event.target.value
-  //     this.startAt.next(q)
-  //     this.endAt.next(q + "\uf8ff") //similar to like operator in sql
-  //   }
-  //   this.lastKeypress = $event.timeStamp
-  // }
 
   //ionic API http://ionicframework.com/docs/api/components/select/Select/#output-events
   onCarBrandSelectChange(selectedValue: any) {
-    this.carsList = this.db.list('/all-cars', {
-      query: {
-        orderByChild: 'marca',
-        equalTo: this.car.marca
-      }
-    })
+    this.carsList = this.carsProvider.getCarsByBrand(this.car.marca)
   }
 
   ionViewDidLoad() {
