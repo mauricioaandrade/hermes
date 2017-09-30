@@ -5,47 +5,60 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title> <ion-icon name="car"></ion-icon> Novo Carro </ion-title>
+    <ion-title>
+      <ion-icon name="car"></ion-icon> Novo Carro </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
 
-  <form (ngSubmit)="logForm()">
-    <ion-item>
-      <ion-label>Todo</ion-label>
-      <ion-input type="text" [(ngModel)]="car.manufacturer" name="title"></ion-input>      
-    </ion-item>
-    <ion-item>
-      <ion-label>Select Car Manufacturer</ion-label>
-      <ion-select [(ngModel)]="car.manufacturer" multiple="true" [ngModelOptions]="{standalone: true}">
-        <ion-option>Renault</ion-option>
-        <ion-option>Ford</ion-option>
-        <ion-option>Fiat</ion-option>
-        <ion-option>Chevrolet</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-        <ion-label>Select Car Model</ion-label>
-        <ion-select [(ngModel)]="car.model" multiple="true" [ngModelOptions]="{standalone: true}">
-          <ion-option>Renault</ion-option>
-          <ion-option>Ford</ion-option>
-          <ion-option>Fiat</ion-option>
-          <ion-option>Chevrolet</ion-option>
-        </ion-select>
-      </ion-item>
-    <ion-item>
-      <ion-label>Year</ion-label>
-      <ion-textarea [(ngModel)]="car.year" name="year"></ion-textarea>
-    </ion-item>
-    <ion-item>
-        <ion-label>Plate</ion-label>
-        <ion-textarea [(ngModel)]="car.plate" name="plate"></ion-textarea>
-      </ion-item>
-    <button ion-button type="submit" block>Add New Car</button>
-  </form>
+  <ion-card>
+
+    <ion-card-header style="background-color: #00008B; color:white">
+      Cadastre um novo carro
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="carForm" (ngSubmit)="addNewUserCar()">
+
+        <ion-item>
+          <ion-label>Marca do Veículo</ion-label>
+          <ion-select formControlName="marca" [(ngModel)]="car.marca" (ionChange)="onCarBrandSelectChange($event)">
+            <ion-option *ngFor="let carBrand of carBrands | async" value="{{carBrand.marca}}">{{carBrand.marca}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Veículo</ion-label>
+          <ion-select formControlName="modelo" [(ngModel)]="car.modelo" [disabled]="!car.marca">
+            <ion-option *ngFor="let carModel of carsList | async" value="{{carModel.modelo}}">{{carModel.modelo}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Ano</ion-label>
+          <ion-select formControlName="year" [(ngModel)]="car.year">
+            <ion-option *ngFor="let year of yearsList" value="{{year}}">{{year}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Placa</ion-label>
+          <ion-input formControlName="plate" text-uppercase text-right [(ngModel)]="car.plate" name="plate" maxlength="7"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Código Smart</ion-label>
+          <ion-textarea text-uppercase text-right formControlName="smart_code" [(ngModel)]="car.smart_code" name="smart_code"></ion-textarea>
+        </ion-item>
+
+        <button ion-button type="submit" block text-capitalize style="background-color: green;">Adicionar</button>
+
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>
