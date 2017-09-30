@@ -1,3 +1,5 @@
+import { LoginPage } from './../login/login';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { MyApp } from './../../app/app.component';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -22,7 +24,8 @@ export class HomePage {
   constructor(
     public db: AngularFireDatabase,
     public navCtrl: NavController,
-    public geolocation: Geolocation
+    public geolocation: Geolocation,
+    public afAuth: AngularFireAuth
   ) {
     this.items = db.list('/events')
   }
@@ -66,6 +69,11 @@ export class HomePage {
       infoWindow.open(this.map, marker);
     });
 
+  }
+
+  logOut() {
+    this.afAuth.auth.signOut();
+    this.navCtrl.push(LoginPage);
   }
 
 }

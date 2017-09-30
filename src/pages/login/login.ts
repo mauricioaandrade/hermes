@@ -1,3 +1,6 @@
+import { RegisterPage } from './../register/register';
+import { User } from './../../models/user';
+import { TabsPage } from './../tabs/tabs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -9,26 +12,38 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  // items: FirebaseListObservable<any[]>;
-  loginData = {
-    email: '',
-    password: ''
-  }
+
+  user = {} as User;
 
   logForm() {
-    this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
-      .then(authObj => sessionStorage.setItem('token', authObj.refreshToken))
+    this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
+      .then(authObj => {
+        sessionStorage.setItem('token', authObj.refreshToken)
+        this.navCtrl.push(TabsPage);
+      })
       .catch(error  => console.error(error));
   }
 
   logOut() {
     this.afAuth.auth.signOut()
-      .then(() => sessionStorage.removeItem('token'))
+      .then(() => {
+        sessionStorage.removeItem('token');
+        this.navCtrl.push(LoginPage);
+      })
       .catch(error => console.error(error));
   }
 
+  register() {
+    this.navCtrl.push(RegisterPage);
+  }
+
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) {
-    this.afAuth.auth.onAuthStateChanged(user => console.log(user));
+    // console.log(this.afAuth.auth.currentUser);
+    this.afAuth.auth.onAuthStateChanged(user => {
+      if(user) {
+        this.navCtrl.push(TabsPage);
+      }
+    });
   }
 
 }

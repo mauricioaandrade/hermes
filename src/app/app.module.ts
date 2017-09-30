@@ -1,3 +1,4 @@
+import { RegisterPage } from './../pages/register/register';
 import { NewCarPage } from './../pages/new-car/new-car';
 import { EventDetailPage } from './../pages/event-detail/event-detail';
 import { EventPage } from './../pages/event/event';
@@ -31,7 +32,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     EventPage, 
     EventDetailPage,
     LoginPage,
-    NewCarPage
+    NewCarPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     EventPage,
     EventDetailPage,
     LoginPage,
-    NewCarPage
+    NewCarPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
