@@ -12,13 +12,13 @@ import { LoginPage } from '../login/login';
 })
 export class TabsPage {
 
-  tab6Root = HomePage;
+  tab1Root = HomePage;
   // tab1Root = NewCarPage;
   tab2Root = AboutPage;
   // tab3Root = ContactPage;
   tab4Root = EventPage;
   tab5Root = LoginPage;
-  tab1Root = NewCarPage;
+  tab6Root = NewCarPage;
 
   constructor() {
 
