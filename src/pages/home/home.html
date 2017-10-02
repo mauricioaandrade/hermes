@@ -17,52 +17,60 @@
 </ion-content> -->
 
 <!-- <ion-content padding> -->
-  <!-- <ion-item *ngFor="let item of items | async">
+<!-- <ion-item *ngFor="let item of items | async">
     <a href="{{item.$key}}">{{item.$key}}</a>
   </ion-item> -->
 <!-- </ion-content> -->
 
 <ion-header>
-    <ion-navbar>
-      <ion-title>
-        Map
-      </ion-title>
-      <ion-buttons end>
-        <button ion-button (click)="addMarker()">+&nbsp;<ion-icon name="ios-flag"></ion-icon></button>
-      </ion-buttons>  
-    </ion-navbar>
-  </ion-header>
-   
-  <ion-content>
-    <div #map id="map" style="width: 100%; max-height: 200px;"></div>
-    <div padding-right padding-left>
-      <p no-margin margin-top text-center style="color: #00008B;">RENAULT KWID - AZUL - AAA-000</p>
-      <p no-margin margin-bottom text-center style="font-size: 1.1rem">Rua Professor Aristides Novis, 42, Federação, Salvador-BA</p>
-      <button ion-button block style="background-color: #8B1C00; width: 90%; margin: auto;">
+  <ion-navbar>
+    <ion-title>
+      Map
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addMarker()">+&nbsp;<ion-icon name="ios-flag"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div #map id="map" style="width: 100%; max-height: 200px;"></div>
+  <div padding-right padding-left>
+    <p no-margin margin-top text-center style="color: #00008B;">RENAULT KWID - AZUL - AAA-000</p>
+    <p no-margin margin-bottom text-center style="font-size: 1.1rem">Rua Professor Aristides Novis, 42, Federação, Salvador-BA</p>
+    <button ion-button block style="background-color: #8B1C00; width: 90%; margin: auto;">
           Pannic Button
       </button>
-    </div>
+  </div>
 
-    <ion-row padding>
-        <ion-col text-center margin-left>
-          <button ion-button icon-left outline large style="border-color: darkgrey; color:darkgrey;width: 63px">
-            <ion-icon no-padding block name="ios-lock"></ion-icon>            
-          </button>
-          <p no-margin style="font-size: 0.8rem;">Portas Fechadas</p>
+  <ion-row padding>
+    <ion-col text-center margin-left>
+      <button ion-button icon-left outline large style="border-color: darkgrey; color:darkgrey;width: 63px">
+          <ion-icon no-padding block name="ios-lock"></ion-icon>            
+        </button>
+      <p no-margin style="font-size: 0.8rem;">Portas Fechadas</p>
+    </ion-col>
+    <ion-col text-center margin-right>
+      <button ion-button icon-left outline large style="border-color: darkgrey; color:darkgrey;">
+          <ion-icon no-padding name="car"></ion-icon>            
+        </button>
+      <p no-margin style="font-size: 0.8rem;">Vidros Fechados</p>
+    </ion-col>
+  </ion-row>
 
-        </ion-col>
-        <ion-col text-center margin-right>
-          <button ion-button icon-left outline large style="border-color: darkgrey; color:darkgrey;">
+  <!-- </ion-col>
+  <ion-col text-center margin-right>
+    <button ion-button icon-left outline large style="border-color: darkgrey; color:darkgrey;">
             <ion-icon no-padding name="car"></ion-icon>            
-          </button>          
-          <p no-margin style="font-size: 0.8rem;">Vidros Fechados</p>
-        </ion-col>
-      </ion-row>
+          </button>
+    <p no-margin style="font-size: 0.8rem;">Vidros Fechados</p>
+  </ion-col>
+  </ion-row> -->
 
-      <button (click)="logOut()">LogOut</button>
+  <button (click)="logOut()">LogOut</button>
 
-    <div style="position: absolute; bottom: 0px; width: 100%; text-align: right;">        
-        <p style="color: #3b5998; margin-right: 20px;">Powered by <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT</p>        
+  <div style="position: absolute; bottom: 0px; width: 100%; text-align: right;">
+    <p style="color: #3b5998; margin-right: 20px;">Powered by
+      <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT</p>
     </div>
-  </ion-content>
-
+</ion-content>

@@ -18,6 +18,7 @@ import { Subject } from 'rxjs/Subject'
   templateUrl: 'new-car.html',
 })
 export class NewCarPage {
+  attemptSubmit = false
   lista: FirebaseListObservable<any[]>;
   carsList;
   carBrands;
@@ -34,18 +35,44 @@ export class NewCarPage {
     smart_code: ''
   }
 
-  addNewUserCar(data) {
-    if (!this.carForm.valid) {
-      const alert = this.alertCtrl.create({
-        title: 'Erro',
-        subTitle: 'Formulário não preenchido corretamente.',
-        buttons: [
-          {
-            text: 'Ok'
-          }
-        ]
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public db: AngularFireDatabase,
+    private carsProvider: CarsProvider,
+    public alertCtrl: AlertController,
+    public formBuilder: FormBuilder) {
+
+      this.lista = this.carsProvider.getUserCars(1);
+      this.carBrands = this.carsProvider.getCarBrands();
+
+      this.yearsList = [];
+      for (let i = (new Date().getFullYear() + 1); i >= 2000 ; i--) {
+        this.yearsList.push(i)
+      }
+
+      //https://forum.ionicframework.com/t/how-to-validate-forms-with-angular-2-in-ionic-2/54687/8
+      //https://www.joshmorony.com/advanced-forms-validation-in-ionic-2/
+      this.carForm = formBuilder.group({
+        marca: ['value', Validators.compose([Validators.required])],
+        modelo: ['value', Validators.compose([Validators.required])],
+        year: ['value', Validators.compose([Validators.required])],
+      plate: ['value', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(7), NewCarPage.isPlateValid /*Validators.pattern("([a-zA-Z]{3}[0-9]{4}])")*/])],
+        smart_code: ['value', Validators.compose([Validators.required])]
       });
-      alert.present()
+  }
+
+  static isPlateValid(formControl): any {
+    if (!/([a-zA-Z]{3}\d{4})+/.test(formControl.value)) {
+      return {
+        "Placa no formato inválido" : true
+      }
+    }
+    return null
+  }
+
+  addNewUserCar(data) {
+    this.attemptSubmit = true
+    if (!this.carForm.valid) {
       return false
     }
 
@@ -60,32 +87,9 @@ export class NewCarPage {
           }
         ]
       });
+      this.attemptSubmit = false
       alert.present()
     });
-  }
-
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public db: AngularFireDatabase, 
-    private carsProvider: CarsProvider,
-    public alertCtrl: AlertController,
-    public formBuilder: FormBuilder) {
-    
-      this.lista = this.carsProvider.getUserCars(1);
-      this.carBrands = this.carsProvider.getCarBrands();
-
-      this.yearsList = [];
-      for (let i = (new Date().getFullYear() + 1); i >= 2000 ; i--) {
-        this.yearsList.push(i)
-      }
-
-      this.carForm = formBuilder.group({
-        marca: ['value', Validators.compose([Validators.required])],
-        modelo: ['value', Validators.compose([Validators.required])],
-        year: ['value', Validators.compose([Validators.required])],
-        plate: ['value', Validators.compose([Validators.required])],
-        smart_code: ['value', Validators.compose([Validators.required])]
-      });
   }
 
   //ionic API http://ionicframework.com/docs/api/components/select/Select/#output-events
@@ -95,6 +99,10 @@ export class NewCarPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewCarPage');
+  }
+
+  isInvalid(field) {
+    return !field.valid && this.attemptSubmit
   }
 
 }

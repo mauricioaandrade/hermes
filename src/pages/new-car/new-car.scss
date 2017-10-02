@@ -1,3 +1,10 @@
 page-new-car {
 
+    ion-label.required:after {
+        content: " *";
+    }
+
+    .validation-error {
+        color: $text-input-highlight-color-invalid
+    }
 }

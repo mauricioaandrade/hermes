@@ -6,11 +6,9 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      <ion-icon name="car"></ion-icon> Novo Carro </ion-title>
+    <ion-title><ion-icon name="car"></ion-icon> Novo Carro </ion-title>
   </ion-navbar>
 </ion-header>
-
 
 <ion-content padding>
 
@@ -24,34 +22,54 @@
       <form [formGroup]="carForm" (ngSubmit)="addNewUserCar()">
 
         <ion-item>
-          <ion-label>Marca do Veículo</ion-label>
+          <ion-label class="required">Marca do Veículo </ion-label>
           <ion-select formControlName="marca" [(ngModel)]="car.marca" (ionChange)="onCarBrandSelectChange($event)">
             <ion-option *ngFor="let carBrand of carBrands | async" value="{{carBrand.marca}}">{{carBrand.marca}}</ion-option>
           </ion-select>
         </ion-item>
 
+        <ion-item *ngIf="isInvalid(carForm.controls.marca)">
+            <p *ngIf="isInvalid(carForm.controls.marca)" class="validation-error"><ion-icon name="warning"></ion-icon> informe a marca do veículo</p>
+        </ion-item>
+
         <ion-item>
-          <ion-label>Veículo</ion-label>
+          <ion-label class="required">Veículo</ion-label>
           <ion-select formControlName="modelo" [(ngModel)]="car.modelo" [disabled]="!car.marca">
             <ion-option *ngFor="let carModel of carsList | async" value="{{carModel.modelo}}">{{carModel.modelo}}</ion-option>
           </ion-select>
         </ion-item>
 
+        <ion-item *ngIf="isInvalid(carForm.controls.modelo)">
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe o modelo do veículo</p>
+        </ion-item>
+
         <ion-item>
-          <ion-label>Ano</ion-label>
+          <ion-label class="required">Ano</ion-label>
           <ion-select formControlName="year" [(ngModel)]="car.year">
             <ion-option *ngFor="let year of yearsList" value="{{year}}">{{year}}</ion-option>
           </ion-select>
         </ion-item>
 
-        <ion-item>
-          <ion-label>Placa</ion-label>
-          <ion-input formControlName="plate" text-uppercase text-right [(ngModel)]="car.plate" name="plate" maxlength="7"></ion-input>
+        <ion-item *ngIf="isInvalid(carForm.controls.year)">
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe o ano do veículo</p>
         </ion-item>
 
         <ion-item>
-          <ion-label>Código Smart</ion-label>
+          <ion-label class="required">Placa</ion-label>
+          <ion-input formControlName="plate" text-uppercase text-right [(ngModel)]="car.plate" name="plate" maxlength="7"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(carForm.controls.plate)">
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe a placa do veículo</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="required">Código Smart</ion-label>
           <ion-textarea text-uppercase text-right formControlName="smart_code" [(ngModel)]="car.smart_code" name="smart_code"></ion-textarea>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(carForm.controls.smart_code)">
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe o código smart do equipamento</p>
         </ion-item>
 
         <button ion-button type="submit" block text-capitalize style="background-color: green;">Adicionar</button>
@@ -60,5 +78,12 @@
     </ion-card-content>
 
   </ion-card>
+
+  <div style="position: absolute; bottom: 0px; width: 100%; text-align: right;">
+    <p style="color: #3b5998; margin-right: 20px;">Powered by
+      <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT
+    </p>
+  </div>
+
 
 </ion-content>
