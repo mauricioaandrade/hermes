@@ -6,6 +6,8 @@ import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
+import { RegisterPage } from '../register/register';
+import { RegisterStep2Page } from '../register-step2/register-step2';
 
 @Component({
   templateUrl: 'tabs.html'

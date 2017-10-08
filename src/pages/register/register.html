@@ -14,18 +14,47 @@
 
 
 <ion-content padding>
+  <ion-card class="sticky-card">
+    <ion-card-header class="head-card-color">
+      Informe os dados de acesso
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="register(user)" [formGroup]="registerForm">
+        <ion-item>
+          <ion-label class="required">Email</ion-label>            
+          <ion-input type="text" formControlName="email" [(ngModel)]="user.email" name="email" placeholder="e-mail"></ion-input>
+        </ion-item>
 
-    <form (ngSubmit)="register(user)">
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="user.email" name="title" placeholder="e-mail"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="password" [(ngModel)]="user.password" name="description" placeholder="password"></ion-input>
-    </ion-item>
+        <ion-item *ngIf="isInvalid(registerForm.controls.email)">
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe um email válido</p>
+        </ion-item>
 
-    <button ion-button type="submit" block style="background-color: #00008B; width: 90%; margin: auto;">
-      Resgitrar
-    </button>
-  </form>
+        <ion-item>
+          <ion-label class="required">Senha</ion-label>            
+          <ion-input type="password" formControlName="password" [(ngModel)]="user.password" name="password" placeholder="senha"></ion-input>
+        </ion-item>
 
+        <ion-item *ngIf="isInvalid(registerForm.controls.password)">
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe uma senha (min. 6 dígitos)</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="required">Confirme a senha</ion-label>            
+          <ion-input type="password" formControlName="checkedPassword" [(ngModel)]="user.checkedPassword" name="checkedPassword" placeholder="senha"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(registerForm.controls.checkedPassword)">
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> senha inválida ou não confere</p>
+        </ion-item>        
+        <button ion-button type="submit" block text-capitalize class="button-secondary-color">Registrar</button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="sticky-footer">
+      <p>Powered by
+        <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT
+      </p>
+    </div>
 </ion-content>

@@ -50,13 +50,17 @@ export class NewCarPage {
         this.yearsList.push(i)
       }
 
-      //https://forum.ionicframework.com/t/how-to-validate-forms-with-angular-2-in-ionic-2/54687/8
-      //https://www.joshmorony.com/advanced-forms-validation-in-ionic-2/
+      // https://medium.com/@adsonrocha/como-criar-um-crud-com-ionic-2-firebase-ae715e8b64bb
+      // https://www.joshmorony.com/building-a-crud-ionic-2-application-with-firebase-angularfire/
+      // https://www.joshmorony.com/high-performance-list-filtering-in-ionic-2/
+      // https://www.djamware.com/post/5855c96380aca7060f443065/ionic-2-firebase-crud-example-part-2
+      // https://forum.ionicframework.com/t/how-to-validate-forms-with-angular-2-in-ionic-2/54687/8
+      // https://www.joshmorony.com/advanced-forms-validation-in-ionic-2/
       this.carForm = formBuilder.group({
         marca: ['value', Validators.compose([Validators.required])],
         modelo: ['value', Validators.compose([Validators.required])],
         year: ['value', Validators.compose([Validators.required])],
-      plate: ['value', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(7), NewCarPage.isPlateValid /*Validators.pattern("([a-zA-Z]{3}[0-9]{4}])")*/])],
+        plate: ['value', Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(7), NewCarPage.isPlateValid /*Validators.pattern("([a-zA-Z]{3}[0-9]{4}])")*/])],
         smart_code: ['value', Validators.compose([Validators.required])]
       });
   }
