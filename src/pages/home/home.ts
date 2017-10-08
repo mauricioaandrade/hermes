@@ -2,7 +2,7 @@ import { LoginPage } from './../login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MyApp } from './../../app/app.component';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 // https://www.joshmorony.com/ionic-2-how-to-use-google-maps-geolocation-video-tutorial/
@@ -25,7 +25,8 @@ export class HomePage {
     public db: AngularFireDatabase,
     public navCtrl: NavController,
     public geolocation: Geolocation,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public app: App
   ) {
     this.items = db.list('/events')
   }
@@ -73,7 +74,8 @@ export class HomePage {
 
   logOut() {
     this.afAuth.auth.signOut();
-    this.navCtrl.setRoot(LoginPage);
+    //@TODO mudar esse codigo que esconde as TABs na pagina de login pois está deprecated
+    this.app.getRootNav().setRoot(LoginPage);
   }
 
   deleteUser() {
