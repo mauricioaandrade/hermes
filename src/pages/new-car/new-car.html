@@ -19,7 +19,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <form [formGroup]="carForm" (ngSubmit)="addNewUserCar()">
+      <form [formGroup]="carForm" (ngSubmit)="addNewUserCar(car)">
 
         <ion-item>
           <ion-label class="required">Marca do Veículo </ion-label>

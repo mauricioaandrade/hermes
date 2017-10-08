@@ -25,7 +25,7 @@ export class RegisterStep2Page {
   lista: FirebaseListObservable<any[]>;
   user = {} as User;
 
-  userKey = '';  
+  userKey = '';
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private afAuth: AngularFireAuth, 
     private usersProvider: UsersProvider) {
     this.registerForm = formBuilder.group({
@@ -47,7 +47,6 @@ export class RegisterStep2Page {
   }
 
   register(user: User) {
-    console.log(this.userKey);    
     this.attemptSubmit = true
     var u = this.afAuth.auth.currentUser;
     if (!u.uid) {
