@@ -5,7 +5,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { UsersProvider } from '../../providers/users/users';
-
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the RegisterStep2Page page.
@@ -53,14 +53,28 @@ export class RegisterStep2Page {
       return false;
     }        
 
+    if (!this.registerForm  .valid) {
+      return false
+    }
+
     user.uid = u.uid;
     
+    var retornoInsertUpdate;
+
     //update
     if (this.userKey) {
-      this.usersProvider.updateUser(this.userKey, user)
+      retornoInsertUpdate = this.usersProvider.updateUser(this.userKey, user).then(function (retorno) {
+        return retorno
+      })
     } else {
       //insert
-      this.usersProvider.addUser(user)
+      retornoInsertUpdate = this.usersProvider.addUser(user).then(function (retorno) {
+        return retorno
+      })
+    }
+    console.log("retorno ins upd", retornoInsertUpdate);
+    if (retornoInsertUpdate) {
+      this.navCtrl.setRoot(HomePage);
     }
   }
 

@@ -76,4 +76,9 @@ export class HomePage {
     this.navCtrl.setRoot(LoginPage);
   }
 
+  deleteUser() {
+    var u = this.afAuth.auth.currentUser;
+    u.delete().then(() => this.navCtrl.setRoot(LoginPage));      
+  }
+
 }

@@ -17,7 +17,7 @@ export class UsersProvider {
 
 
   addUser(data) {
-    this.db.database.ref().child('users').push(data)
+    return this.db.database.ref().child('users').push(data)
   }
 
   // https://firebase.google.com/docs/database/web/read-and-write
