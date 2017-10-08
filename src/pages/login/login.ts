@@ -16,6 +16,10 @@ export class LoginPage {
   user = {} as User;
 
   logForm() {
+    if (!this.user.email || !this.user.password) {
+      return false;
+    }
+    
     this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
       .then(authObj => {
         sessionStorage.setItem('token', authObj.refreshToken)
