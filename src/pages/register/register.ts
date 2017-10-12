@@ -66,17 +66,12 @@ export class RegisterPage {
 
     const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
     .then(function (authData) {
-      // self.navCtrl.push(RegisterStep2Page);
-      // self.navCtrl.setRoot('RegisterStep2Page');
-      // console.log("authData" , authData)
+      console.log("authData", authData)
+      console.log("navCtrol", self.navCtrl)
+      console.log("self", self)
+      return authData
     })
     .catch(function (error) {
-      var u = self.afAuth.auth.currentUser;
-      
-      if (u) {
-        // u.delete()
-      }
-
       var title = 'Erro ao cadastrar'
       var subTitle = ''
       console.log("erroaocadastrar", error)
@@ -94,9 +89,11 @@ export class RegisterPage {
         ]
       });
       alert.present()
-    });
-
-    this.navCtrl.push(RegisterStep2Page);
+    }); 
+    
+    if (result && result.uid) {
+      this.navCtrl.setRoot(RegisterStep2Page)
+    }    
   }
 
   isInvalid(field) {
