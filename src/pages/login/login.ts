@@ -4,7 +4,6 @@ import { TabsPage } from './../tabs/tabs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
-// import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 
 @Component({
@@ -16,30 +15,26 @@ export class LoginPage {
   user = {} as User;
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public alertCtrl: AlertController) {
-    // console.log(this.afAuth.auth.currentUser);
-    // this.user.email = "lpfw82@gmail.com"
-    // this.user.password = "123456"
-    this.afAuth.auth.onAuthStateChanged(user => {
-      if(user) {
-        console.log("aqui no onAuthStateChange", user)
-        // this.navCtrl.push(TabsPage);
-        // this.navCtrl.setRoot(TabsPage);
-      }
-    });
+    // this.afAuth.auth.onAuthStateChanged(user => {
+    //   if (user) {
+    //     localStorage.setItem('token', user.refreshToken);
+    //   } else {
+    //     localStorage.clear();
+    //     console.log(localStorage.getItem('token'));
+    //   }
+    // });
   }
 
   logOut() {
-    this.afAuth.auth.signOut()
-      .then(() => {
-        sessionStorage.removeItem('token');
-        this.navCtrl.push(LoginPage);
+    this.afAuth.auth
+      .signOut()
+      .then(_ => {
+        this.navCtrl.setRoot(LoginPage);
       })
       .catch(error => console.error(error));
   }
 
-  register() {
-    this.navCtrl.push(RegisterPage);
-  }
+  register() { this.navCtrl.push(RegisterPage); }
 
   logForm() {
     if (!this.user.email || !this.user.password) {
@@ -48,11 +43,8 @@ export class LoginPage {
 
     var self = this
     this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
-      .then(authObj => {
-        sessionStorage.setItem('token', authObj.refreshToken)
-        this.navCtrl.push(TabsPage);
-      })
-      .catch(function(error) {
+      .then(_ => this.navCtrl.push(TabsPage))
+      .catch(error => {
         console.error(error)
         var title = 'Erro ao logar'
         var subTitle = 'Verifique seu usuário e senha e tente novamente'
@@ -71,7 +63,7 @@ export class LoginPage {
           ]
         });
         alert.present()
-    })
+      })
   }
 
 }
