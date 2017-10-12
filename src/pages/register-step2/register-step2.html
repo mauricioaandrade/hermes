@@ -21,7 +21,7 @@
       <form (ngSubmit)="register(user)" [formGroup]="registerForm">
         <ion-item>
           <ion-label class="required">Nome</ion-label>
-          <ion-input type="text" formControlName="fullname" [(ngModel)]="user.fullname" name="fullname" placeholder="nome completo"></ion-input>
+          <ion-input text-right type="text" formControlName="fullname" [(ngModel)]="user.fullname" name="fullname" placeholder="nome completo"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="isInvalid(registerForm.controls.fullname)">
@@ -31,7 +31,7 @@
 
         <ion-item>
           <ion-label class="required">Telefone</ion-label>
-          <ion-input type="text" formControlName="phone" [(ngModel)]="user.phone" name="phone" placeholder="telefone"></ion-input>
+          <ion-input text-right type="text" formControlName="phone" [(ngModel)]="user.phone" name="phone" placeholder="telefone"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="isInvalid(registerForm.controls.phone)">
@@ -41,7 +41,7 @@
 
         <ion-item>
           <ion-label class="required">CPF</ion-label>
-          <ion-input type="text" formControlName="cpf" [(ngModel)]="user.cpf" name="cpf" placeholder="cpf"></ion-input>
+          <ion-input text-right type="text" formControlName="cpf" [(ngModel)]="user.cpf" name="cpf" placeholder="cpf"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="isInvalid(registerForm.controls.cpf)">
@@ -51,7 +51,7 @@
 
         <ion-item>
           <ion-label class="required">CNH</ion-label>
-          <ion-input type="text" formControlName="cnh" [(ngModel)]="user.cnh" name="cnh" placeholder="cnh"></ion-input>
+          <ion-input text-right type="text" formControlName="cnh" [(ngModel)]="user.cnh" name="cnh" placeholder="cnh"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="isInvalid(registerForm.controls.cnh)">
@@ -61,7 +61,7 @@
 
         <ion-item>
           <ion-label class="required">Tel. Emergência 1</ion-label>
-          <ion-input type="text" formControlName="emergencyPhone1" [(ngModel)]="user.emergencyPhone1" name="emergencyPhone1" placeholder="telefone"></ion-input>
+          <ion-input text-right type="text" formControlName="emergencyPhone1" [(ngModel)]="user.emergencyPhone1" name="emergencyPhone1" placeholder="telefone"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="isInvalid(registerForm.controls.emergencyPhone1)">
@@ -71,7 +71,7 @@
 
         <ion-item>
           <ion-label class="required">Tel. Emergência 2</ion-label>
-          <ion-input type="text" formControlName="emergencyPhone2" [(ngModel)]="user.emergencyPhone2" name="emergencyPhone2" placeholder="telefone"></ion-input>
+          <ion-input text-right type="text" formControlName="emergencyPhone2" [(ngModel)]="user.emergencyPhone2" name="emergencyPhone2" placeholder="telefone"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="isInvalid(registerForm.controls.emergencyPhone2)">
@@ -81,7 +81,7 @@
 
         <ion-item>
           <ion-label class="required">Tel. Emergência 3</ion-label>
-          <ion-input type="text" formControlName="emergencyPhone3" [(ngModel)]="user.emergencyPhone3" name="emergencyPhone3" placeholder="telefone"></ion-input>
+          <ion-input text-right type="text" formControlName="emergencyPhone3" [(ngModel)]="user.emergencyPhone3" name="emergencyPhone3" placeholder="telefone"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="isInvalid(registerForm.controls.emergencyPhone3)">
