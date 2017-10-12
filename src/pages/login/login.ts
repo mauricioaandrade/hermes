@@ -66,23 +66,21 @@ export class LoginPage {
       })
   }
 
-  ionViewWillEnter() {
+  displayTabBar(display) {
     let elements = document.querySelectorAll(".tabbar");
     
     if (elements != null) {
       Object.keys(elements).map((key) => {
-        elements[key].style.display = 'none';
+        elements[key].style.display = display;
       });
     }
   }
 
+  ionViewWillEnter() {
+    this.displayTabBar('none');
+  }
+
   ionViewWillLeave() {
-    let elements = document.querySelectorAll(".tabbar");
-    
-    if (elements != null) {
-      Object.keys(elements).map((key) => {
-        elements[key].style.display = 'flex';
-      });
-    }
+    this.displayTabBar('flex');
   }
 }

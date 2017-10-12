@@ -18,11 +18,10 @@ import { RegisterStep2Page } from '../register-step2/register-step2';
 export class TabsPage {
 
   tab1Root = HomePage;
-  // tab1Root = NewCarPage;
   tab2Root = AboutPage;
   // tab3Root = ContactPage;
   tab4Root = EventPage;
-  tab5Root = LoginPage;
+  // tab5Root = LoginPage;
   tab6Root = NewCarPage;
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth) {

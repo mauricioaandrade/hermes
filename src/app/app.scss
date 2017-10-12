@@ -15,7 +15,8 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.md {
+// .md = android and web https://ionicframework.com/docs/theming/platform-specific-styles/
+.md, .ios {
     .validation-error {
         color: $text-input-highlight-color-invalid
     }
@@ -29,12 +30,11 @@
     }
 
     .sticky-footer {
-        height: 50px;
-        text-align: right;
-        p {
-            color: #3b5998;
-            margin-right: 20px;
-        }
+      height: 50px;
+      text-align: right;
+      img {
+        max-width: 70%;
+      }
     }
 
     .head-card-color {

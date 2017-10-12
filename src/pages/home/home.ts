@@ -1,6 +1,5 @@
 import { LoginPage } from './../login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { MyApp } from './../../app/app.component';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
