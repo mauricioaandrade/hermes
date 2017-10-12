@@ -45,4 +45,12 @@
     .button-secondary-color {
         background-color: map-get($colors, secondary);
     }
+
+    form {
+        ion-item {
+            ion-label {
+                color: #424242!important;
+            }
+        }
+    }
 }

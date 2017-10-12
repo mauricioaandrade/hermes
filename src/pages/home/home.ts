@@ -25,8 +25,7 @@ export class HomePage {
     public db: AngularFireDatabase,
     public navCtrl: NavController,
     public geolocation: Geolocation,
-    public afAuth: AngularFireAuth
-  ) {
+    public afAuth: AngularFireAuth) {
     this.items = db.list('/events')
   }
 
