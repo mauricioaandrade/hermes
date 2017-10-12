@@ -14,12 +14,12 @@
 
   <ion-card>
 
-    <ion-card-header style="background-color: #00008B; color:white">
+    <ion-card-header class="head-card-color">
       Cadastre um novo carro
     </ion-card-header>
 
     <ion-card-content>
-      <form [formGroup]="carForm" (ngSubmit)="addNewUserCar()">
+      <form [formGroup]="carForm" (ngSubmit)="addNewUserCar(car)">
 
         <ion-item>
           <ion-label class="required">Marca do Veículo </ion-label>
@@ -29,7 +29,7 @@
         </ion-item>
 
         <ion-item *ngIf="isInvalid(carForm.controls.marca)">
-            <p *ngIf="isInvalid(carForm.controls.marca)" class="validation-error"><ion-icon name="warning"></ion-icon> informe a marca do veículo</p>
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> marca do veículo inválida</p>
         </ion-item>
 
         <ion-item>
@@ -40,7 +40,7 @@
         </ion-item>
 
         <ion-item *ngIf="isInvalid(carForm.controls.modelo)">
-            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe o modelo do veículo</p>
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> modelo do veículo inválido</p>
         </ion-item>
 
         <ion-item>
@@ -51,7 +51,7 @@
         </ion-item>
 
         <ion-item *ngIf="isInvalid(carForm.controls.year)">
-            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe o ano do veículo</p>
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> ano do veículo inválido</p>
         </ion-item>
 
         <ion-item>
@@ -60,7 +60,7 @@
         </ion-item>
 
         <ion-item *ngIf="isInvalid(carForm.controls.plate)">
-            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe a placa do veículo</p>
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> placa do veículo inválida</p>
         </ion-item>
 
         <ion-item>
@@ -69,18 +69,18 @@
         </ion-item>
 
         <ion-item *ngIf="isInvalid(carForm.controls.smart_code)">
-            <p class="validation-error"><ion-icon name="warning"></ion-icon> informe o código smart do equipamento</p>
+            <p class="validation-error"><ion-icon name="warning"></ion-icon> código smart do equipamento inválido</p>
         </ion-item>
 
-        <button ion-button type="submit" block text-capitalize style="background-color: green;">Adicionar</button>
+        <button ion-button type="submit" block text-capitalize class="button-secondary-color">Adicionar</button>
 
       </form>
     </ion-card-content>
 
   </ion-card>
 
-  <div style="position: absolute; bottom: 0px; width: 100%; text-align: right;">
-    <p style="color: #3b5998; margin-right: 20px;">Powered by
+  <div class="sticky-footer">
+    <p>Powered by
       <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT
     </p>
   </div>

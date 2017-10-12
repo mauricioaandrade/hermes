@@ -14,3 +14,43 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.md {
+    .validation-error {
+        color: $text-input-highlight-color-invalid
+    }
+
+    ion-label.required:after {
+        content: " *";
+    }
+
+    .sticky-card {
+        min-height: calc(100vh - 160px);
+    }
+
+    .sticky-footer {
+        height: 50px;
+        text-align: right;
+        p {
+            color: #3b5998;
+            margin-right: 20px;
+        }
+    }
+
+    .head-card-color {
+        background-color: map-get($colors, primary);
+        color: white;
+    }
+
+    .button-secondary-color {
+        background-color: map-get($colors, secondary);
+    }
+
+    form {
+        ion-item {
+            ion-label {
+                color: #424242!important;
+            }
+        }
+    }
+}

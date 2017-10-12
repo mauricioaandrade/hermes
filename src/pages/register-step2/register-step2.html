@@ -1,0 +1,103 @@
+<!--
+  Generated template for the RegisterStep2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Estamos quase lá</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="sticky-card">
+    <ion-card-header class="head-card-color">
+      Complemente seus dados
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="register(user)" [formGroup]="registerForm">
+        <ion-item>
+          <ion-label class="required">Nome</ion-label>
+          <ion-input text-right type="text" formControlName="fullname" [(ngModel)]="user.fullname" name="fullname" placeholder="nome completo"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(registerForm.controls.fullname)">
+          <p class="validation-error">
+            <ion-icon name="warning"></ion-icon> nome inválido</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="required">Telefone</ion-label>
+          <ion-input text-right type="text" formControlName="phone" [(ngModel)]="user.phone" name="phone" placeholder="telefone"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(registerForm.controls.phone)">
+          <p class="validation-error">
+            <ion-icon name="warning"></ion-icon> telefone inválido</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="required">CPF</ion-label>
+          <ion-input text-right type="text" formControlName="cpf" [(ngModel)]="user.cpf" name="cpf" placeholder="cpf"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(registerForm.controls.cpf)">
+          <p class="validation-error">
+            <ion-icon name="warning"></ion-icon> cpf inválido</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="required">CNH</ion-label>
+          <ion-input text-right type="text" formControlName="cnh" [(ngModel)]="user.cnh" name="cnh" placeholder="cnh"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(registerForm.controls.cnh)">
+          <p class="validation-error">
+            <ion-icon name="warning"></ion-icon> cnh inválida</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="required">Tel. Emergência 1</ion-label>
+          <ion-input text-right type="text" formControlName="emergencyPhone1" [(ngModel)]="user.emergencyPhone1" name="emergencyPhone1" placeholder="telefone"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(registerForm.controls.emergencyPhone1)">
+          <p class="validation-error">
+            <ion-icon name="warning"></ion-icon> telefone de emergência inválido</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="required">Tel. Emergência 2</ion-label>
+          <ion-input text-right type="text" formControlName="emergencyPhone2" [(ngModel)]="user.emergencyPhone2" name="emergencyPhone2" placeholder="telefone"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(registerForm.controls.emergencyPhone2)">
+          <p class="validation-error">
+            <ion-icon name="warning"></ion-icon> telefone de emergência inválido</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="required">Tel. Emergência 3</ion-label>
+          <ion-input text-right type="text" formControlName="emergencyPhone3" [(ngModel)]="user.emergencyPhone3" name="emergencyPhone3" placeholder="telefone"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="isInvalid(registerForm.controls.emergencyPhone3)">
+          <p class="validation-error">
+            <ion-icon name="warning"></ion-icon> telefone de emergência inválido</p>
+        </ion-item>
+
+        <button ion-button type="submit" block text-capitalize class="button-secondary-color">Atualizar dados</button>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="sticky-footer">
+    <p>Powered by
+      <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT
+    </p>
+  </div>
+</ion-content>

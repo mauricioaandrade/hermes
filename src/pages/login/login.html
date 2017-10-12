@@ -1,46 +1,52 @@
+<br><br>
+
 <ion-content padding>
-  <img src="../../assets/images/logo.png" alt="" style="margin: auto;display: block;">
+  <div class="sticky-card">
+    <img src="assets/images/logo.png" alt="" style="margin: auto;display: block;">
 
-  <form (ngSubmit)="logForm()">
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="loginData.email" name="title" placeholder="e-mail"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="password" [(ngModel)]="loginData.password" name="description" placeholder="password"></ion-input>
-    </ion-item>
-    <button ion-button clear block style="color: #00008B;">
-      Esqueci a senha
-    </button>
+    <br><br><br><br><br><br>
 
-    <button ion-button type="submit" block style="background-color: #00008B; width: 90%; margin: auto;">
-      ENTRAR
-    </button>
+    <form (ngSubmit)="logForm()">
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="user.email" name="title" placeholder="e-mail"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" [(ngModel)]="user.password" name="description" placeholder="password"></ion-input>
+      </ion-item>
+      <button ion-button clear block color="primary">
+        Esqueci a senha
+      </button>
 
-    <p text-center style="margin: 15px 15px">ou</p>
+      <button ion-button type="submit" block color="primary" style="width: 90%; margin: auto;">
+        ENTRAR
+      </button>
 
-    <button ion-button icon-left style="background-color: #3b5998; width: 90%; margin: auto;" block>
-      <ion-icon name="logo-facebook"></ion-icon>
-      Logar com Facebook
-    </button>
+      <!-- <p text-center style="margin: 15px 15px">ou</p>
 
-    <button ion-button icon-left style="background-color: #df4b37; width: 90%; margin: auto; margin-top: 10px" block margin-top>
-      <ion-icon name="logo-googleplus"></ion-icon>
-      Logar com Google
-    </button>
+      <button ion-button icon-left style="background-color: #3b5998; width: 90%; margin: auto;" block>
+        <ion-icon name="logo-facebook"></ion-icon>
+        Logar com Facebook
+      </button>
 
-    <button ion-button clear block style="color: #00008B;">
-      Cadastre-se
-    </button>
-
-    <div style="position: absolute; bottom: 0px; width: 100%; text-align: right;">
-      <p style="color: #3b5998; margin-right: 20px;">Powered by
-        <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT</p>
-    </div>
+      <button ion-button icon-left style="background-color: #df4b37; width: 90%; margin: auto; margin-top: 10px" block margin-top>
+        <ion-icon name="logo-googleplus"></ion-icon>
+        Logar com Google
+      </button> -->
 
 
-  </form>
 
-  <button ion-button (click)="logOut()" clear block style="color: #00008B;">
-    Log Out
-    </button>
+
+    </form>
+
+    <button (click)="register()" ion-button clear block color="primary">
+        Cadastre-se
+      </button>
+
+      
+  </div>
+  <div class="interakt-footer">
+    <p>Powered by
+      <ion-icon name="ios-information-circle-outline"></ion-icon> INTERAKT
+    </p>
+  </div>
 </ion-content>

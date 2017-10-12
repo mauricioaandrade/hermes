@@ -1,3 +1,5 @@
+import { RegisterPage } from './../pages/register/register';
+import { RegisterStep2Page } from './../pages/register-step2/register-step2';
 import { NewCarPage } from './../pages/new-car/new-car';
 import { EventDetailPage } from './../pages/event-detail/event-detail';
 import { EventPage } from './../pages/event/event';
@@ -21,6 +23,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CarsProvider } from '../providers/cars/cars';
+import { UsersProvider } from '../providers/users/users';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { CarsProvider } from '../providers/cars/cars';
     EventPage, 
     EventDetailPage,
     LoginPage,
-    NewCarPage
+    NewCarPage,
+    RegisterPage,
+    RegisterStep2Page
   ],
   imports: [
     BrowserModule,
@@ -51,14 +56,17 @@ import { CarsProvider } from '../providers/cars/cars';
     EventPage,
     EventDetailPage,
     LoginPage,
-    NewCarPage
+    NewCarPage,
+    RegisterPage,
+    RegisterStep2Page
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CarsProvider
+    CarsProvider,
+    UsersProvider
   ]
 })
 export class AppModule {}
