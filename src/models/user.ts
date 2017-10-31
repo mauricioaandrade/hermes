@@ -11,4 +11,5 @@ export interface User {
     emergencyPhone2: string;
     emergencyPhone3: string;
     cars: Array<any>;
+    pushNotificationTokens: Array<any>;
 }

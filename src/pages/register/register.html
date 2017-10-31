@@ -22,7 +22,7 @@
       <form (ngSubmit)="register(user)" [formGroup]="registerForm">
         <ion-item>
           <ion-label class="required">Email</ion-label>            
-          <ion-input text-right type="text" formControlName="email" [(ngModel)]="user.email" name="email" placeholder="e-mail"></ion-input>
+          <ion-input text-right type="email" formControlName="email" [(ngModel)]="user.email" name="email" placeholder="e-mail"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="isInvalid(registerForm.controls.email)">

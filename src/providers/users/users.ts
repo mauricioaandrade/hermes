@@ -15,7 +15,6 @@ export class UsersProvider {
     console.log('Hello UsersProvider Provider');
   }
 
-
   addUser(data) {
     return this.db.database.ref().child('users').push(data)
   }
@@ -47,5 +46,35 @@ export class UsersProvider {
         limitToFirst: 1
       }
     })
+  }
+
+  insertUserKeyOnDevice(userKey, smartCode) {
+    var device = this.db.database.ref(`/devicesUsers/${smartCode}/users`).once('value');
+    device.then(results => {
+      if (results.val()) {
+        var foundUserKeys = results.val()
+        for (var uk in foundUserKeys) {
+          if (foundUserKeys[uk] == userKey) {  
+            return false;
+          }
+        }
+
+        this.db.database.ref(`/devicesUsers/${smartCode}/users/`).push(userKey);
+      }
+    })    
+  }
+
+  insertPushNotificationToken(uid, token) {
+    if (!uid || !token) {
+      return;
+    }
+    
+    var userKey = this.findByUid(uid)[0]["$key"];    
+
+    if (!userKey) {
+      return;
+    }
+
+    return this.db.database.ref('/users/' +  userKey + '/pushNotificationTokens').push(token);
   }
 }

@@ -89,4 +89,6 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value=" " />
     </plugin>
     <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
+    <allow-navigation href="http://172.16.0.15:8101" />
+    <allow-navigation href="http://172.16.0.15:8100" />
 </widget>
