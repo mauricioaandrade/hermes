@@ -16,6 +16,7 @@ import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { FCM } from '@ionic-native/fcm';
 
 import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from '../environment';
@@ -66,7 +67,8 @@ import { UsersProvider } from '../providers/users/users';
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CarsProvider,
-    UsersProvider
+    UsersProvider,
+    FCM
   ]
 })
 export class AppModule {}

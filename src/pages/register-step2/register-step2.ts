@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { UsersProvider } from '../../providers/users/users';
 import { HomePage } from '../home/home';
+import { FCM } from '@ionic-native/fcm';
 
 /**
  * Generated class for the RegisterStep2Page page.
@@ -27,7 +28,21 @@ export class RegisterStep2Page {
 
   userKey = '';
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private afAuth: AngularFireAuth, 
-    private usersProvider: UsersProvider) {
+    private usersProvider: UsersProvider,
+    private fcm: FCM
+  ) {
+    fcm.getToken().then(token=>{
+      if (token) {
+        if (!this.user.pushNotificationTokens) {
+          this.user['pushNotificationTokens'] = [token];
+        } else {
+          if (this.user.pushNotificationTokens && this.user.pushNotificationTokens.indexOf(token) === -1) {
+            this.user.pushNotificationTokens.push(token);
+          }
+        }
+      }
+    });
+    
     this.registerForm = formBuilder.group({
       fullname: ['', Validators.compose([Validators.required])],
       phone: ['', Validators.compose([Validators.required])],

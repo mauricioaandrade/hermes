@@ -96,6 +96,10 @@ export class NewCarPage {
         
     var retorno = this.usersProvider.addUserCar(this.userKey, data)
 
+    if (data.smart_code) {
+      this.usersProvider.insertUserKeyOnDevice(this.userKey, data.smart_code)
+    }
+
     retorno.then(() => {
       this.carForm.reset()
       const alert = this.alertCtrl.create({

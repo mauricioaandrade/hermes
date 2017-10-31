@@ -4,7 +4,8 @@ import { TabsPage } from './../tabs/tabs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
-
+import { FCM } from '@ionic-native/fcm';
+import { UsersProvider } from '../../providers/users/users';
 
 @Component({
   selector: 'page-login',
@@ -14,7 +15,9 @@ export class LoginPage {
 
   user = {} as User;
 
-  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public alertCtrl: AlertController,
+    private fcm: FCM,
+    private usersProvider: UsersProvider) {
     // this.afAuth.auth.onAuthStateChanged(user => {
     //   if (user) {
     //     localStorage.setItem('token', user.refreshToken);
@@ -43,7 +46,35 @@ export class LoginPage {
 
     var self = this
     this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
-      .then(_ => this.navCtrl.push(TabsPage))
+      .then(_ => {        
+        var currentUser = this.usersProvider.findByUid(this.afAuth.auth.currentUser.uid);
+        currentUser.subscribe(
+          users => {
+            var userUpd = users[0]
+            var userKey = userUpd["$key"]
+
+            if (!userKey) {
+              return
+            }
+
+            this.fcm.getToken().then(token=>{
+              if (token) {
+                if (!userUpd.pushNotificationTokens) {
+                  userUpd['pushNotificationTokens'] = [token];
+                } else {
+                  if (userUpd.pushNotificationTokens && userUpd.pushNotificationTokens.indexOf(token) === -1) {
+                    userUpd.pushNotificationTokens.push(token);
+                  }
+                }
+                this.usersProvider.updateUser(userKey, userUpd)
+              }
+            });
+            
+            this.navCtrl.push(TabsPage)
+          }
+        
+        );        
+      })
       .catch(error => {
         console.error(error)
         var title = 'Erro ao logar'
