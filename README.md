@@ -20,6 +20,13 @@ $ ionic serve
 $ ionic cordova platform add ios
 $ ionic cordova run ios
 ```
-
 Substitute ios for android if not on a Mac.
+- To run the app on an Android phone with livereload run:
+```bash
+$ ionic cordova run android --device --livereload
+```
+- To write cloud functions install firebase-tools:
+```bash
+$ npm install -g firebase-tools
+```
 
