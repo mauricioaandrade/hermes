@@ -3,6 +3,10 @@
 To build this repo, make shure you have:
 
 - [NodeJS](https://nodejs.org/en/) installed.
+- [Ionic frameowrk](https://ionicframework.com/getting-started/) and Cordava globally installed on your machine.
+```bash
+$ npm i -g ionic cordova
+```
 - Install all dependencies
 ```bash
 $ npm i
