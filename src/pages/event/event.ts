@@ -17,6 +17,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class EventPage {
   items: FirebaseListObservable<any[]>;
+  cars: FirebaseListObservable<any[]>;
 
   push(key) {
     this.navCtrl.push(EventDetailPage, {eventId: key});
@@ -27,6 +28,8 @@ export class EventPage {
     public navCtrl: NavController,
   ) {
     this.items = db.list('/events')
+    this.cars = db.list('/users/-KvxTcAMpIGVswyOe95u/cars/')
+    this.cars.forEach(car => car.forEach(location => console.log(location)));
   }
 
   ionViewDidLoad() {

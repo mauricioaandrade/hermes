@@ -14,6 +14,13 @@
 
 
 <ion-content padding>
+  <ul *ngFor="let item of cars | async">
+    <li>{{item.$key}}</li>
+  </ul>
+    <!-- <ion-item *ngFor="let item of cars | async">
+        <button ion-button block (click)="push(item.$key)">{{item.$key}}</button>
+      </ion-item> -->
+
   <ion-item *ngFor="let item of items | async">
     <!-- <a href="/events/{{item.$key}}">{{item.$key}}</a> -->
     <button ion-button block (click)="push(item.$key)">{{item.$key}}</button>
