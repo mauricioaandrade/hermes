@@ -92,6 +92,7 @@ export class RegisterPage {
     }); 
     
     if (result && result.uid) {
+      this.afAuth.auth.currentUser.sendEmailVerification();
       this.navCtrl.setRoot(RegisterStep2Page)
     }    
   }
