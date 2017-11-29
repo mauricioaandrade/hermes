@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { UsersProvider } from '../../providers/users/users';
 import { HomePage } from '../home/home';
+import { LoginPage } from './../login/login';
 import { FCM } from '@ionic-native/fcm';
 
 /**
@@ -89,7 +90,7 @@ export class RegisterStep2Page {
     }
     console.log("retorno ins upd", retornoInsertUpdate);
     if (retornoInsertUpdate) {
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot(LoginPage);
     }
   }
 

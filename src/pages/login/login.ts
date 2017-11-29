@@ -57,6 +57,11 @@ export class LoginPage {
               return
             }
 
+            if (!this.afAuth.auth.currentUser.emailVerified){
+              console.log("email não verificado");  
+              return
+            }
+
             this.fcm.getToken().then(token=>{
               if (token) {
                 if (!userUpd.pushNotificationTokens) {
