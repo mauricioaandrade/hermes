@@ -26,6 +26,8 @@ admin.initializeApp(functions.config().firebase);
  */
 exports.sendEventNotification = functions.database.ref('/events/{eventId}').onWrite(event => {
   const smartCode = event.data.val()["smart_code"];
+  const eventType = event.data.val()["eventType"];
+  
   if (!smartCode) {
     return
   }
@@ -33,8 +35,11 @@ exports.sendEventNotification = functions.database.ref('/events/{eventId}').onWr
   //obter usuarios do dispositivo do evento
   const getUsersPromise = admin.database().ref(`/devicesUsers/${smartCode}/users`).once('value');
 
-  return Promise.all([getUsersPromise]).then(results => {
+  const getEventDetails = admin.database().ref(`/event-types/${eventType}`).once('value');
+
+  return Promise.all([getUsersPromise, getEventDetails]).then(results => {
     const users = results[0].val();
+    const eventDetails = results[1].val();
 
     const userIds = Object.keys(users).map(function(key) {
       return users[key];
@@ -42,7 +47,7 @@ exports.sendEventNotification = functions.database.ref('/events/{eventId}').onWr
 
     // para cada usuário
     userIds.map(function(userId) {
-      if(!userId) {
+      if (!userId) {
         return;
       }
 
@@ -57,10 +62,21 @@ exports.sendEventNotification = functions.database.ref('/events/{eventId}').onWr
           return;
         }
 
+        const title = eventDetails['title'] || 'Você recebeu um alerta!';
+        const body = eventDetails['body'] || `Abra o aplicativo Smart Security.`;
         const payload = {
           notification: {
-            title: 'Um incidente ocorreu!',
-            body: `Algo de errado não está certo.`,
+            title: title,
+            body: body,
+            color: '#001132',
+            sound: "default",
+            click_action: "FCM_PLUGIN_ACTIVITY",
+            icon: "fcm_push_icon",
+            priority: "high"
+          },
+          data: {
+            title: title,
+            subTitle: body
           }
         };
             

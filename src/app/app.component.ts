@@ -1,6 +1,7 @@
 import { TabsPage } from './../pages/tabs/tabs';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -20,7 +21,8 @@ export class MyApp {
     splashScreen: SplashScreen,
     private fcm: FCM,
     private afAuth: AngularFireAuth,
-    private usersProvider: UsersProvider
+    private usersProvider: UsersProvider,
+    private alertCtrl: AlertController
   ) {
     platform.ready().then(() => {
       // https://ionicframework.com/docs/api/platform/Platform/
@@ -29,17 +31,24 @@ export class MyApp {
       
       if (platform.is('ios') || platform.is('android')) {
 
-        fcm.onNotification().subscribe(data=>{
-          //@TODO receber feedback do pessoal para saber como vão ser exibidas as notificações
+        fcm.onNotification().subscribe(data => {
+
+          let alert = this.alertCtrl.create({
+            title: data.title,
+            subTitle: data.subTitle,
+            buttons: ['Ok']
+          });
+          
+          // @TODO receber feedback do pessoal para saber como vão ser exibidas as notificações
           if (data.wasTapped) {
-            alert( JSON.stringify(data) );
+            alert.present();
           } else {
-            alert( JSON.stringify(data) );
+            alert.present();
           }
         })
 
-        //Note that this callback will be fired everytime a new token is generated, including the first time.
-        fcm.onTokenRefresh().subscribe(token=>{            
+        // Note that this callback will be fired everytime a new token is generated, including the first time.
+        fcm.onTokenRefresh().subscribe(token => {
           var u = this.afAuth.auth.currentUser;
           if (!u.uid) {
             return false;

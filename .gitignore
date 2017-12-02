@@ -23,7 +23,17 @@ node_modules/
 tmp/
 temp/
 hooks/
-platforms/
+
+# Devido o push notification https://github.com/fechanique/cordova-plugin-fcm que obriga colocar o icone na res folder
+!platforms/
+platforms/*
+!platforms/android/
+platforms/android/*
+!platforms/android/res/
+platforms/android/res/*
+!platforms/android/res/drawable*/
+!platforms/android/res/mipmap*/
+
 plugins/
 plugins/android.json
 plugins/ios.json
