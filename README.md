@@ -25,8 +25,18 @@ Substitute ios for android if not on a Mac.
 ```bash
 $ ionic cordova run android --device --livereload
 ```
+- To build an android debug version run:
+```bash
+$ ionic cordova build android
+```
 - To write cloud functions install firebase-tools:
 ```bash
 $ npm install -g firebase-tools
 ```
+- To publish cloud functions run (inside /smart-firebase-function folder):
+```bash
+$ firebase deploy --only functions
+```
+
+
 
