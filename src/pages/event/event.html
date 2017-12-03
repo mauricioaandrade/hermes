@@ -7,22 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>EventPage</ion-title>
+    <ion-title>Histórico</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ul *ngFor="let item of cars | async">
-    <li>{{item.$key}}</li>
-  </ul>
-    <!-- <ion-item *ngFor="let item of cars | async">
-        <button ion-button block (click)="push(item.$key)">{{item.$key}}</button>
-      </ion-item> -->
-
-  <ion-item *ngFor="let item of items | async">
-    <!-- <a href="/events/{{item.$key}}">{{item.$key}}</a> -->
-    <button ion-button block (click)="push(item.$key)">{{item.$key}}</button>
+  <ion-item>
+    <ion-label>Placa</ion-label>
+    <ion-select [(ngModel)]="selected_smart_code" (ionChange)="onSmartCodeSelected($event)">
+      <ion-option *ngFor="let userCar of userCars" value="{{userCar.smart_code}}">{{userCar.plate}}</ion-option>
+    </ion-select>
   </ion-item>
+
+  <ion-list>
+      <button ion-item (click)="push(item.$key, item.latitude, item.longitude)" *ngFor="let item of items | async" style="font-family:Helvetica; padding-left: 1px; padding-right: 1px;">
+        <ion-icon name="pin" item-start></ion-icon>
+        <span style="font-weight: bold;"> {{item.creationDate | date :  "dd/MM/y hh:mm" }} </span>
+        <span style="margin-left: 5px; margin-right:5px"> - </span>
+        <span> {{item.eventType | uppercase}} </span>
+      </button>
+  </ion-list>
+  
 </ion-content>
