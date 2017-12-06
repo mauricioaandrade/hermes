@@ -77,9 +77,11 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
+    <allow-navigation href="http://172.16.0.15:8101" />
+    <allow-navigation href="http://172.16.0.15:8100" />
     <engine name="ios" spec="^4.5.0" />
     <engine name="android" spec="^6.3.0" />
-    <plugin name="cordova-plugin-console" spec="^1.0.7" />
+    <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
@@ -89,6 +91,4 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value=" " />
     </plugin>
     <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
-    <allow-navigation href="http://172.16.0.15:8101" />
-    <allow-navigation href="http://172.16.0.15:8100" />
 </widget>

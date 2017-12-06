@@ -1,13 +1,16 @@
 import { LoginPage } from './../login/login';
+import {AboutPage} from '../about/about';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
+import { ContactPage } from '../contact/contact';
+import { RegisterPage } from '../register/register';
+import { RegisterStep2Page } from '../register-step2/register-step2';
+
 // https://www.joshmorony.com/ionic-2-how-to-use-google-maps-geolocation-video-tutorial/
 import { Geolocation } from '@ionic-native/geolocation';
-
-
 
 declare var google;
 
@@ -16,6 +19,14 @@ declare var google;
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  //tab1Root = HomePage;
+  //tab1Root = AboutPage;
+  //tab3Root = ContactPage;
+  //tab4Root = EventPage;
+  //tab5Root = LoginPage;
+  //tab6Root = NewCarPage;
+
   items: FirebaseListObservable<any[]>;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
@@ -26,11 +37,13 @@ export class HomePage {
     public geolocation: Geolocation,
     public afAuth: AngularFireAuth) {
     this.items = db.list('/events')
+
   }
 
   ionViewDidLoad() {
     this.loadMap();
   }
+
 
   loadMap() {
 
