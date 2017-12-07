@@ -15,11 +15,11 @@ import { User } from './../models/user';
 import { CarsProvider } from './../providers/cars/cars';
 import { ContactPage } from '../pages/contact/contact';
 import { LoginPage } from '../pages/login/login';
-import { HistoricoPage } from '../pages/historico/historico';
+import { EventPage } from '../pages/event/event';
 import { RegisterPage } from '../pages/register/register';
 import { RegisterStep2Page } from '../pages/register-step2/register-step2';
 import { Component,ViewChild } from '@angular/core';
-import {AlertController} from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 @Component({
   templateUrl: 'app.html'
 })
@@ -27,6 +27,7 @@ export class MyApp {
 
   rootPage:any = HomePage;
  pages: Array<{title: string, component: any, icon:string}>;
+ 
  @ViewChild(Nav) nav: Nav;
 
   constructor(platform: Platform,
@@ -34,22 +35,30 @@ export class MyApp {
     splashScreen: SplashScreen,
     private fcm: FCM,
     private afAuth: AngularFireAuth,
-    private alertController: AlertController,
+    public Alert: AlertController,
+   
     private usersProvider: UsersProvider
+
   ) {
     platform.ready().then(() => {
       // https://ionicframework.com/docs/api/platform/Platform/
       statusBar.styleDefault();
       splashScreen.hide();
          // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Pagina inicial', component: HomePage,icon:'home'},
-      { title: 'Sobre', component: AboutPage,icon:'book'},
-      { title: 'Registrar', component: RegisterPage,icon:'cog'},
-      { title: 'Novo Carro', component: NewCarPage,icon:'car'},
-      { title: 'Smart Code',icon:'lock'},
-    ];
 
+
+    this.pages = [
+      //{ title: 'Pagina inicial', component: HomePage,icon:'home'},
+      //{ title: 'Sobre', component: AboutPage,icon:'book'},
+      //{ title: 'Registrar', component: RegisterPage,icon:'cog'},
+      //{ title: 'Novo Carro', component: NewCarPage,icon:'car'},
+        { title: 'Inserir código Smart',icon:'lock'},
+        { title: 'Historico', component: EventPage,icon:'book'},
+        { title: 'Pagamento',icon:'cash'},
+        { title: 'Fale Conosco',icon:'people'}
+
+    ];
+    
       if (platform.is('ios') || platform.is('android')) {
 
         fcm.onNotification().subscribe(data=>{
@@ -74,19 +83,43 @@ export class MyApp {
 
 
   }
-  openFilters() {
-    let alert = this.alertController.create({
-        title: 'Example',
-        subTitle: 'Example subtitle',
-        buttons: ['OK']
-    });
 
+doPrompt(i) {
+if(i==0){
+  let alert = this.Alert.create({
+      title: 'INSIRA SEU CÓDIGO SMART',
+    
+      inputs: [
+        {
+          name: 'Smart Code',
+          placeholder: 'Ex:00000001'
+        },
+      ],
+      buttons: [
+        {
+          text: 'CANCELAR',
+          handler: (data: any) => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: (data: any) => {
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+  
     alert.present();
-} 
+    }
+}
+  
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
 
 }
