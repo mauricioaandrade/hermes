@@ -57,6 +57,12 @@ isActiveToggleTextPassword: Boolean = true;
     this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
       .then(_ => {        
         var currentUser = this.usersProvider.findByUid(this.afAuth.auth.currentUser.uid);
+        if (!this.afAuth.auth.currentUser.emailVerified){
+          console.log("email não verificado");
+          const verificationError = new Error('Verifique seu email através do link enviado!');
+          verificationError["code"] = 'email-not-verified';  
+          return Promise.reject(verificationError);
+        }
         currentUser.subscribe(
           users => {
             var userUpd = users[0]
@@ -91,6 +97,9 @@ isActiveToggleTextPassword: Boolean = true;
 
         if (error["code"] == 'auth/user-not-found') {
           subTitle = 'Usuário não cadastrado!'
+        }
+        if (error["code"] == 'email-not-verified') {
+          subTitle = error.message;
         }
 
         const alert = self.alertCtrl.create({
