@@ -23,36 +23,7 @@ node_modules/
 tmp/
 temp/
 hooks/
-
-# Devido o push notification https://github.com/fechanique/cordova-plugin-fcm que obriga colocar o icone na res folder
-# não achei uma maneira bonita de fazer mas a ideia é não ignorar os arquivos fcm_push_notification.png
-!platforms/
-platforms/*
-!platforms/android/
-platforms/android/*
-!platforms/android/res/
-platforms/android/res/*
-!platforms/android/res/drawable*/
-!platforms/android/res/mipmap*/
-platforms/android/res/drawable-land-hdpi/
-platforms/android/res/drawable-land-ldpi/
-platforms/android/res/drawable-land-mdpi/
-platforms/android/res/drawable-land-xhdpi/
-platforms/android/res/drawable-land-xxhdpi/
-platforms/android/res/drawable-land-xxxhdpi/
-platforms/android/res/drawable-port-hdpi/
-platforms/android/res/drawable-port-ldpi/
-platforms/android/res/drawable-port-mdpi/
-platforms/android/res/drawable-port-xhdpi/
-platforms/android/res/drawable-port-xxhdpi/
-platforms/android/res/drawable-port-xxxhdpi/
-platforms/android/res/mipmap-hdpi/
-platforms/android/res/mipmap-ldpi/
-platforms/android/res/mipmap-mdpi/
-platforms/android/res/mipmap-xhdpi/
-platforms/android/res/mipmap-xxhdpi/
-platforms/android/res/mipmap-xxxhdpi/
-
+platforms/
 plugins/
 plugins/android.json
 plugins/ios.json

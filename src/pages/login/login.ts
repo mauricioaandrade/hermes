@@ -13,6 +13,15 @@ import { UsersProvider } from '../../providers/users/users';
 })
 export class LoginPage {
 
+isActiveToggleTextPassword: Boolean = true;
+  public toggleTextPassword(): void{
+      this.isActiveToggleTextPassword = (this.isActiveToggleTextPassword==true)?false:true;
+  }
+  public getType() {
+      return this.isActiveToggleTextPassword ? 'password' : 'text';
+  }
+
+
   user = {} as User;
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public alertCtrl: AlertController,

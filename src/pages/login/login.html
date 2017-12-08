@@ -1,8 +1,10 @@
 <br><br>
 
 <ion-content padding>
+
   <div class="sticky-card">
-    <img src="assets/images/logo.png" alt="" style="margin: auto;display: block;">
+
+    <img src="assets/images/logo.png" alt="" style="margin: auto;display: block; padding-top: 25%;">
 
     <br><br><br><br><br><br>
 
@@ -11,13 +13,17 @@
         <ion-input type="email" [(ngModel)]="user.email" name="title" placeholder="e-mail"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="password" [(ngModel)]="user.password" name="description" placeholder="password"></ion-input>
-      </ion-item>
-      <button ion-button clear block color="primary">
-        Esqueci a senha
-      </button>
 
-      <button ion-button type="submit" block color="primary" style="width: 90%; margin: auto;">
+        <ion-input type="password" [(ngModel)]="user.password" name="description" placeholder="senha"  [type]="getType()"></ion-input>
+
+       
+         <ion-icon clear color="dark" type="button" item-right (click)="toggleTextPassword()"> <ion-icon name="eye" > </ion-icon> </ion-icon>
+      </ion-item>
+        
+      <div class="esquecisenha" style="padding-top: 2%; padding-bottom: 8%">
+       <span class="password" style="padding-left: 60%;"> <a href="#">Esqueci minha senha</a></span> 
+      </div>
+        <button ion-button type="submit" block color="primary" style="width: 90%; margin: auto;">
         ENTRAR
       </button>
 
@@ -32,19 +38,20 @@
         <ion-icon name="logo-googleplus"></ion-icon>
         Logar com Google
       </button> -->
-
-
-
-
     </form>
-
+<div class="cadastro" style="padding-top: 10%;">
+<hr/>
     <button (click)="register()" ion-button clear block color="primary">
         Cadastre-se
       </button>
-
+</div>
       
   </div>
-  <div class="interakt-footer">
-    <img src="assets/images/powered.png" alt="">
+  <div class="interakt-footer" style="width:200px;height:45px;overflow:hidden;">
+
+    <img src="assets/images/powered.png" width="200px" height="auto">
   </div>
 </ion-content>
+<div  >
+   <img src="image.jpg" width="200px" height="auto">
+</div>

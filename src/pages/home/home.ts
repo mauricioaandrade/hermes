@@ -1,17 +1,22 @@
 import { LoginPage } from './../login/login';
+import {AboutPage} from '../about/about';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
+
+import { ContactPage } from '../contact/contact';
+import { RegisterPage } from '../register/register';
+import { RegisterStep2Page } from '../register-step2/register-step2';
+
 import firebase from 'firebase';
 import {EventPage} from './../event/event';
+
 
 // https://www.joshmorony.com/ionic-2-how-to-use-google-maps-geolocation-video-tutorial/
 import { Geolocation } from '@ionic-native/geolocation';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
-
-
 
 declare var google;
 type cars = {
@@ -36,6 +41,14 @@ type lastPosition ={
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  //tab1Root = HomePage;
+  //tab1Root = AboutPage;
+  //tab3Root = ContactPage;
+  //tab4Root = EventPage;
+  //tab5Root = LoginPage;
+  //tab6Root = NewCarPage;
+
   items: FirebaseListObservable<any[]>;
   user: any;
   latlng: any[];
@@ -54,13 +67,20 @@ export class HomePage {
     public navCtrl: NavController,
     public geolocation: Geolocation,
     public afAuth: AngularFireAuth) {
+
+    this.items = db.list('/events')
+
+
     this.items = db.list('/events'),
     this.user = new NavParams('user'),
     console.log(this.user.data)
+
   }
 
 
 
+
+  loadMap() {
   ionViewDidLoad() {
     
     const userCarsRef: firebase.database.Reference = firebase.database().ref('/users/-KvxTcAMpIGVswyOe95u/');

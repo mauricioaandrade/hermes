@@ -25,7 +25,12 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Map
+     <button ion-button menuToggle>
+     <ion-icon name="menu">  
+     </ion-icon>
+     <img src="assets/images/smart.png" style="width: 250px;height: 41px;padding-left: 60px;padding-bottom: 7px">
+     </button>
+
     </ion-title>
     <!-- <ion-buttons end>
       <button ion-button (click)="addMarker()">+&nbsp;<ion-icon name="ios-flag"></ion-icon></button>
@@ -34,15 +39,24 @@
 </ion-header>
 
 <ion-content>
-  <div #map id="map" style="width: 100%; max-height: 200px;"></div>
-  <div padding-right padding-left>
-    <p no-margin margin-top text-center color="primary">RENAULT KWID - AZUL - AAA-000</p>
-    <p no-margin margin-bottom text-center style="font-size: 1.1rem">Rua Professor Aristides Novis, 42, Federação, Salvador-BA</p>
-    <button ion-button block style="background-color: #8B1C00; width: 90%; margin: auto;">
+  <div #map id="map" style="width: 100%; max-height: 580px;">
+  </div>
+  <ion-footer>
+	
+		<button ion-button round style="background-color: #8B1C00; width: 100%;margin: auto;">
           Botão de Pânico
       </button>
-  </div>
 
+</ion-footer>
+	
+      <!--
+  <div padding-right padding-left>
+
+    <p no-margin margin-top text-center color="primary">RENAULT KWID - AZUL - AAA-000</p>
+    <p no-margin margin-bottom text-center style="font-size: 1.1rem">Rua Professor Aristides Novis, 42, Federação, Salvador-BA</p>
+    
+  </div>
+<!--
   <ion-row padding>
     <ion-col text-center margin-left>
       <button ion-button icon-left outline large style="border-color: darkgrey; color:darkgrey;width: 63px">
@@ -66,7 +80,7 @@
     <p no-margin style="font-size: 0.8rem;">Vidros Fechados</p>
   </ion-col>
   </ion-row> -->
-
+<!--
   <button (click)="logOut()">LogOut</button>
 
   <button (click)="deleteUser()">Deletar Usuário</button>
@@ -74,4 +88,5 @@
   <div class="sticky-footer">
       <img src="assets/images/powered.png" alt="">
   </div>
+  -->
 </ion-content>

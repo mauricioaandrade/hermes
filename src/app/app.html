@@ -1,1 +1,23 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title><img src="assets/images/usuario.png" style="width:100%;height: 100%;margin: auto;display: block"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button  menuClose ion-item *ngFor="let p of pages;let i = index" (click)="openPage(p)"(click)="doPrompt(i)">
+      <ion-icon [name]="p.icon" item-left ></ion-icon>
+
+        {{p.title}}
+        
+        
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
