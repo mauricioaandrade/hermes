@@ -52,10 +52,10 @@ export class MyApp {
       //{ title: 'Sobre', component: AboutPage,icon:'book'},
       //{ title: 'Registrar', component: RegisterPage,icon:'cog'},
       //{ title: 'Novo Carro', component: NewCarPage,icon:'car'},
-        { title: 'Inserir código Smart',icon:'lock'},
+      //{ title: 'Inserir código Smart',icon:'lock'},
         { title: 'Historico', component: EventPage,icon:'book'},
-        { title: 'Pagamento',icon:'cash'},
-        { title: 'Fale Conosco',icon:'people'}
+      //{ title: 'Pagamento',icon:'cash'},
+      //{ title: 'Fale Conosco',icon:'people'}
 
     ];
     
@@ -84,8 +84,7 @@ export class MyApp {
 
   }
 
-doPrompt(i) {
-if(i==0){
+doPrompt() {
   let alert = this.Alert.create({
       title: 'INSIRA SEU CÓDIGO SMART',
     
