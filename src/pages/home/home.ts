@@ -1,5 +1,5 @@
 import { LoginPage } from './../login/login';
-import {AboutPage} from '../about/about';
+import { AboutPage } from '../about/about';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -11,7 +11,7 @@ import { RegisterPage } from '../register/register';
 import { RegisterStep2Page } from '../register-step2/register-step2';
 
 import firebase from 'firebase';
-import {EventPage} from './../event/event';
+import { EventPage } from './../event/event';
 
 
 // https://www.joshmorony.com/ionic-2-how-to-use-google-maps-geolocation-video-tutorial/
@@ -31,9 +31,9 @@ type cars = {
   year: Number;
 }
 
-type lastPosition ={
-    Latitude?: any;
-    Longitude?: any;
+type lastPosition = {
+  Latitude?: any;
+  Longitude?: any;
 }
 
 @Component({
@@ -55,12 +55,12 @@ export class HomePage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  public carros={};
-  public carrosLatLng:{
+  public carros = {};
+  public carrosLatLng: {
     Latitude?: String,
     Longitude?: String
   };
-  
+
 
   constructor(
     public db: AngularFireDatabase,
@@ -72,89 +72,89 @@ export class HomePage {
 
 
     this.items = db.list('/events'),
-    this.user = new NavParams('user'),
-    console.log(this.user.data)
+      this.user = new NavParams('user'),
+      console.log(this.user.data)
 
   }
 
 
 
 
-  loadMap() {
-  ionViewDidLoad() {
-    
-    const userCarsRef: firebase.database.Reference = firebase.database().ref('/users/-KvxTcAMpIGVswyOe95u/');
-    userCarsRef.on('value',usercarSnapshot =>{
-      this.carros = usercarSnapshot.child('cars').toJSON();
-      let carTeste= this.carros;
+  // loadMap() {
+  //   ionViewDidLoad() {
 
-      Object.keys((carTeste) as cars).map((positionCar)=>{
-        // console.log(carTeste[positionCar].lastLocation);
-        // let lat = carTeste[positionCar].lastLocation.Latitude;
-        // let lng = carTeste[positionCar].lastLocation.Longitude;
-      }
-      );
-      // this.loadMap(carTeste);
-      this.loadMap(carTeste);
-    });
-    
-    const personRef: firebase.database.Reference = firebase.database().ref('/users/-KvxTcAMpIGVswyOe95u/cars/');
-    personRef.on('value',carSnapshot =>{  
-      this.carrosLatLng = carSnapshot.child('centopeiaHumana/lastLocation').toJSON();
-      // this.loadMap(JSON.stringify(this.carrosLatLng.Latitude), JSON.stringify(this.carrosLatLng.Longitude));
-    });
-      } 
+  //     const userCarsRef: firebase.database.Reference = firebase.database().ref('/users/-KvxTcAMpIGVswyOe95u/');
+  //     userCarsRef.on('value', usercarSnapshot => {
+  //       this.carros = usercarSnapshot.child('cars').toJSON();
+  //       let carTeste = this.carros;
 
- 
-  loadMap(car) {
-    let latLng = new google.maps.LatLng(-12.977547,-38.455398);
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    this.addMarker(car);
-  }
+  //       Object.keys((carTeste) as cars).map((positionCar) => {
+  //         // console.log(carTeste[positionCar].lastLocation);
+  //         // let lat = carTeste[positionCar].lastLocation.Latitude;
+  //         // let lng = carTeste[positionCar].lastLocation.Longitude;
+  //       });
+  //       // this.loadMap(carTeste);
+  //       this.loadMap(carTeste);
+  //     });
 
-  addMarker(car) {
-    Object.keys((car) as cars).map((positionCar)=>{
-      console.log(car[positionCar].lastLocation);
-      let marker = new google.maps.Marker({
-        map: this.map,
-        animation: google.maps.Animation.DROP,
-        position: this.map.getCenter()
-      });
-  
-      let content = "<h4>My Car!</h4>";
-  
-      this.addInfoWindow(marker, JSON.stringify(car[positionCar].plate));
-    }
-  );
-   
+  //     const personRef: firebase.database.Reference = firebase.database().ref('/users/-KvxTcAMpIGVswyOe95u/cars/');
+  //     personRef.on('value', carSnapshot => {
+  //       this.carrosLatLng = carSnapshot.child('centopeiaHumana/lastLocation').toJSON();
+  //       // this.loadMap(JSON.stringify(this.carrosLatLng.Latitude), JSON.stringify(this.carrosLatLng.Longitude));
+  //     });
+  //   }
 
-  }
 
-  addInfoWindow(marker, content) {
+  //   loadMap(car) {
+  //     let latLng = new google.maps.LatLng(-12.977547, -38.455398);
+  //     let mapOptions = {
+  //       center: latLng,
+  //       zoom: 15,
+  //       mapTypeId: google.maps.MapTypeId.ROADMAP
+  //     }
+  //     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  //     this.addMarker(car);
+  //   }
 
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
+  //   addMarker(car) {
+  //     Object.keys((car) as cars).map((positionCar) => {
+  //       console.log(car[positionCar].lastLocation);
+  //       let marker = new google.maps.Marker({
+  //         map: this.map,
+  //         animation: google.maps.Animation.DROP,
+  //         position: this.map.getCenter()
+  //       });
 
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
-    });
+  //       let content = "<h4>My Car!</h4>";
 
-  }
+  //       this.addInfoWindow(marker, JSON.stringify(car[positionCar].plate));
+  //     }
+  //     );
 
-  logOut() {
-    this.afAuth.auth.signOut();
-    this.navCtrl.setRoot(LoginPage);
-  }
 
-  deleteUser() {
-    var u = this.afAuth.auth.currentUser;
-    u.delete().then(() => this.navCtrl.setRoot(LoginPage));      
-  }
+  //   }
 
+  //   addInfoWindow(marker, content) {
+
+  //     let infoWindow = new google.maps.InfoWindow({
+  //       content: content
+  //     });
+
+  //     google.maps.event.addListener(marker, 'click', () => {
+  //       infoWindow.open(this.map, marker);
+  //     });
+
+  //   }
+
+  //   logOut() {
+  //     this.afAuth.auth.signOut();
+  //     this.navCtrl.setRoot(LoginPage);
+  //   }
+
+  //   deleteUser() {
+  //     var u = this.afAuth.auth.currentUser;
+  //     u.delete().then(() => this.navCtrl.setRoot(LoginPage));
+  //   }
+
+  // }
 }

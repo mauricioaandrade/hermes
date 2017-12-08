@@ -18,17 +18,17 @@ import { LoginPage } from '../pages/login/login';
 import { EventPage } from '../pages/event/event';
 import { RegisterPage } from '../pages/register/register';
 import { RegisterStep2Page } from '../pages/register-step2/register-step2';
-import { Component,ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage:any = HomePage;
- pages: Array<{title: string, component: any, icon:string}>;
- 
- @ViewChild(Nav) nav: Nav;
+  rootPage: any = HomePage;
+  pages: Array<{ title: string, component: any, icon: string }>;
+
+  @ViewChild(Nav) nav: Nav;
 
   constructor(platform: Platform,
     statusBar: StatusBar,
@@ -36,7 +36,7 @@ export class MyApp {
     private fcm: FCM,
     private afAuth: AngularFireAuth,
     public Alert: AlertController,
-   
+
     private usersProvider: UsersProvider
 
   ) {
@@ -44,34 +44,34 @@ export class MyApp {
       // https://ionicframework.com/docs/api/platform/Platform/
       statusBar.styleDefault();
       splashScreen.hide();
-         // used for an example of ngFor and navigation
+      // used for an example of ngFor and navigation
 
 
-    this.pages = [
-      //{ title: 'Pagina inicial', component: HomePage,icon:'home'},
-      //{ title: 'Sobre', component: AboutPage,icon:'book'},
-      //{ title: 'Registrar', component: RegisterPage,icon:'cog'},
-      //{ title: 'Novo Carro', component: NewCarPage,icon:'car'},
-      //{ title: 'Inserir código Smart',icon:'lock'},
-        { title: 'Historico', component: EventPage,icon:'book'},
-      //{ title: 'Pagamento',icon:'cash'},
-      //{ title: 'Fale Conosco',icon:'people'}
+      this.pages = [
+        //{ title: 'Pagina inicial', component: HomePage,icon:'home'},
+        //{ title: 'Sobre', component: AboutPage,icon:'book'},
+        //{ title: 'Registrar', component: RegisterPage,icon:'cog'},
+        //{ title: 'Novo Carro', component: NewCarPage,icon:'car'},
+        //{ title: 'Inserir código Smart',icon:'lock'},
+        { title: 'Historico', component: EventPage, icon: 'book' },
+        //{ title: 'Pagamento',icon:'cash'},
+        //{ title: 'Fale Conosco',icon:'people'}
 
-    ];
-    
+      ];
+
       if (platform.is('ios') || platform.is('android')) {
 
-        fcm.onNotification().subscribe(data=>{
+        fcm.onNotification().subscribe(data => {
           //@TODO receber feedback do pessoal para saber como vão ser exibidas as notificações
           if (data.wasTapped) {
-            alert( JSON.stringify(data) );
+            alert(JSON.stringify(data));
           } else {
-            alert( JSON.stringify(data) );
+            alert(JSON.stringify(data));
           }
         })
 
         //Note that this callback will be fired everytime a new token is generated, including the first time.
-        fcm.onTokenRefresh().subscribe(token=>{            
+        fcm.onTokenRefresh().subscribe(token => {
           var u = this.afAuth.auth.currentUser;
           if (!u.uid) {
             return false;
@@ -84,10 +84,10 @@ export class MyApp {
 
   }
 
-doPrompt() {
-  let alert = this.Alert.create({
+  doPrompt() {
+    let alert = this.Alert.create({
       title: 'INSIRA SEU CÓDIGO SMART',
-    
+
       inputs: [
         {
           name: 'Smart Code',
@@ -109,16 +109,13 @@ doPrompt() {
         }
       ]
     });
-  
+
     alert.present();
-    }
-}
-  
+  }
+
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
-
-
 }
