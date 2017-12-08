@@ -7,13 +7,21 @@
 
   <ion-content>
     <ion-list>
+     <button menuClose ion-item (click)="doPrompt()">Inserir código Smart
+      <ion-icon name="lock" item-left></ion-icon>
+        </button>
       <button  menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
       <ion-icon [name]="p.icon" item-left ></ion-icon>
-
         {{p.title}}
-        
-        
       </button>
+     <button menuClose ion-item>Pagamento
+      <ion-icon name="cash" item-left></ion-icon>
+        </button>
+        <button menuClose ion-item>Contato
+      <ion-icon name="people" item-left></ion-icon>
+        </button>
+
+
     </ion-list>
   </ion-content>
 
